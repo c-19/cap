@@ -69,7 +69,6 @@ class ContextTest extends Specification
         "key"  | 1234567  | "key"  | 1234567  || true
         "key"  | 1234567  | "key"  | 1234568  || false
         "key"  | new Object()  | "key"  | new Object()  || false
-
     }
 
     def "toString contains map."()
@@ -85,5 +84,32 @@ class ContextTest extends Specification
         then:
         actual.contains( key )
         actual.contains( value )
+    }
+
+    def "merge context"()
+    {
+        given:
+        Context c1 = new Context()
+        Context c2 = new Context()
+        Context expected1 = new Context()
+
+        String key1 = "key1"
+        String key2 = "key2"
+
+        String value1 = "value1"
+        String value2 = "value2"
+
+        c1.put( key1, value1 )
+        c2.put( key1, value2 )
+        c2.put( key2, value1 )
+
+        expected1.put( key1, value2 )
+        expected1.put( key2, value1 )
+
+        when:
+        c1.merge( c2 )
+
+        then:
+        c1 == expected1
     }
 }

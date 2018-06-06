@@ -9,7 +9,7 @@ class BasicOperationTest extends Specification
 
     def setup()
     {
-        instance = new TestOperation()
+        instance = new BasicOperation()
     }
 
     def "Setting and Retrieving Context"()
@@ -23,6 +23,21 @@ class BasicOperationTest extends Specification
 
         then:
         instance.getContext() == c
+    }
+
+    def "Get name"()
+    {
+        given:
+        String parent = "p"
+        String name = "n"
+        instance.setParentName( parent )
+        instance.setName( name )
+
+        when:
+        String actual = instance.getFullyQualifiedName()
+
+        then:
+        actual == parent + "." + name
     }
 
     def "Run operation as expected."()
@@ -40,14 +55,5 @@ class BasicOperationTest extends Specification
         then:
         actual != null
         actualContext == initialContext
-    }
-
-
-    class TestOperation extends BasicOperation
-    {
-        Output run( Input input )
-        {
-            return new Output()
-        }
     }
 }

@@ -1,38 +1,33 @@
 package io.cap;
 
-import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * Basic operation with no init or setup, save context
  * so that it is available within run operations.
  */
-public abstract class BasicOperation implements Operation, Serializable
+public class BasicOperation extends AbstractOperation
 {
     private static final long serialVersionUID = 1L;
-
-    private Context context;
-
-    @Override
-    public Context getContext()
-    {
-        return context;
-    }
-
-    @Override
-    public void setContext(Context context)
-    {
-        this.context = context;
-    }
 
     @Override
     public void init()
     {
-        //Do nothing.
+        //Do nothing
+    }
+
+    @Override
+    public Output run( Input input )
+    {
+        String runKey = getParentName() + "." + getName() + ".run";
+        getContext().put( runKey, LocalDateTime.now() );
+        return new Output();
     }
 
     @Override
     public void cleanup()
     {
-        //Do nothing
+        String initKey = getParentName() + "." + getName() + ".cleanup";
+        getContext().put( initKey, LocalDateTime.now() );
     }
 }

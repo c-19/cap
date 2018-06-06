@@ -20,7 +20,7 @@ package io.cap;
  * </ol>
  *
  */
-public interface Operation extends Contextual
+public interface Operation extends Contextual, Named
 {
     /**
      * Initialise the operation for running.

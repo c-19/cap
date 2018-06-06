@@ -22,6 +22,10 @@ public class Context implements Serializable
         map.put( key, value );
     }
 
+    public void merge( Context c )
+    {
+        map.putAll( c.map );
+    }
 
     public boolean containsKey(String key)
     {
