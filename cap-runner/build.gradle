@@ -8,10 +8,10 @@ dependencies {
     
     //Test
     //Spock
-    libs.groovy_all
-    libs.spock_core
-    libs.cglib_nodep
-    libs.objenesis
+    testCompile libs.groovy_all
+    testCompile libs.spock_core
+    testCompile libs.cglib_nodep
+    testCompile libs.objenesis
 }
 
 
