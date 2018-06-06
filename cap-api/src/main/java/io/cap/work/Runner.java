@@ -1,7 +1,6 @@
 package io.cap.work;
 
 import io.cap.Contextual;
-import io.cap.Named;
 import io.cap.monitor.Monitored;
 
 /**

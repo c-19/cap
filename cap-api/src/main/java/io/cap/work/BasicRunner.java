@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
  */
 public class BasicRunner extends AbstractRunner
 {
-    private static final long serialVersionUID = 1L;
 
     @Override
     public Output run(Operation operation, Input input )
@@ -23,9 +22,9 @@ public class BasicRunner extends AbstractRunner
             getContext().merge( operation.getContext() );
             return output;
         }
-        catch( Throwable t )
+        catch( Exception e )
         {
-            record(operation, "error", t.getMessage() );
+            record(operation, "error", e.getMessage() );
         }
         finally
         {

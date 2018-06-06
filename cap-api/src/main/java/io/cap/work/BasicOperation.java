@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
  */
 public class BasicOperation extends AbstractOperation
 {
-    private static final long serialVersionUID = 1L;
 
     @Override
     public void init()

@@ -2,7 +2,6 @@ package io.cap;
 
 import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 
@@ -15,7 +14,7 @@ public class Context implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    Map<String,Object> map = new HashMap<>();
+    HashMap<String,Object> map = new HashMap<>();
 
     /**
      * Add the key value pair to the context.

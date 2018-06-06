@@ -3,13 +3,11 @@ package io.cap.monitor;
 import io.cap.Context;
 import io.cap.Contextual;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
-public class Event implements Serializable
+public class Event
 {
-    private static final long serialVersionUID = 1L;
 
     private final Context sourceContext;
     private final String sourceName;
