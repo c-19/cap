@@ -1,4 +1,6 @@
-package io.cap;
+package io.cap.work;
+
+import io.cap.monitor.Event;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +10,7 @@ import java.time.LocalDateTime;
 public class BasicRunner extends AbstractRunner
 {
     private static final long serialVersionUID = 1L;
-    
+
     @Override
     public Output run(Operation operation, Input input )
     {
@@ -66,9 +68,8 @@ public class BasicRunner extends AbstractRunner
         record( operation, "cleanup.end", LocalDateTime.now() );
     }
 
-    private void record( Operation operation, String keyEnd, Object value )
+    private void record( Operation operation, String keyEnd, Object...value )
     {
-        String key = getFullyQualifiedName() + "."  + operation.getFullyQualifiedName() + "." + keyEnd;
-        getContext().put( key, value );
+        register( Event.of( operation, keyEnd, value ) );
     }
 }

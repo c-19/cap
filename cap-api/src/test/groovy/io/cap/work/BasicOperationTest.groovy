@@ -1,5 +1,9 @@
-package io.cap
+package io.cap.work
 
+import io.cap.Context
+import io.cap.monitor.BasicObserver
+import io.cap.monitor.Event
+import io.cap.monitor.Monitor
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -55,5 +59,30 @@ class BasicOperationTest extends Specification
         then:
         actual != null
         actualContext == initialContext
+    }
+
+    def "Register without monitor"()
+    {
+        when:
+        instance.register( Event.of( instance, "nothing" ) )
+
+        then:
+        noExceptionThrown()
+    }
+
+    def "Get set monitor"()
+    {
+        given:
+        Monitor m = new Monitor()
+        BasicObserver o = new BasicObserver()
+        m.addObserver( o )
+        instance.setMonitor( m )
+        Event e = Event.of( instance, "hello" )
+
+        when:
+        instance.register( e )
+
+        then:
+        o.getEvents() == [e]
     }
 }

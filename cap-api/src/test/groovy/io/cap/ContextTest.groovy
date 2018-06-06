@@ -112,4 +112,17 @@ class ContextTest extends Specification
         then:
         c1 == expected1
     }
+
+    def "Merge null does nothing"()
+    {
+        given:
+        instance.put( "key", "value" )
+
+        when:
+        instance.merge( null )
+
+        then:
+        instance.size() == 1
+    }
+
 }

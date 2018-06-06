@@ -1,4 +1,9 @@
-package io.cap;
+package io.cap.work;
+
+import io.cap.Context;
+import io.cap.Contextual;
+import io.cap.Named;
+import io.cap.monitor.Monitored;
 
 /**
  * A discrete unit of activity.<br/>
@@ -20,7 +25,7 @@ package io.cap;
  * </ol>
  *
  */
-public interface Operation extends Contextual, Named
+public interface Operation extends Contextual, Monitored
 {
     /**
      * Initialise the operation for running.
@@ -35,7 +40,7 @@ public interface Operation extends Contextual, Named
      * @param input paramaters
      * @return result
      */
-    Output run( Input input );
+    Output run(Input input );
 
     /**
      * Clean up after running the operation.

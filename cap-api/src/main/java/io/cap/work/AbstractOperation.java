@@ -1,14 +1,19 @@
-package io.cap;
+package io.cap.work;
+
+import io.cap.Context;
+import io.cap.monitor.Event;
+import io.cap.monitor.Monitor;
 
 import java.io.Serializable;
 
-public abstract class AbstractRunner implements Runner, Serializable
+public abstract class AbstractOperation implements Operation, Serializable
 {
     private static final long serialVersionUID = 1L;
 
     private Context context;
     private String parentName = "ROOT";
     private String name = this.getClass().getName();
+    private Monitor monitor;
 
     @Override
     public Context getContext()
@@ -50,5 +55,28 @@ public abstract class AbstractRunner implements Runner, Serializable
     public String getFullyQualifiedName()
     {
         return getParentName() + "." + getName();
+    }
+
+    @Override
+    public Monitor getMonitor()
+    {
+        return this.monitor;
+    }
+
+    @Override
+    public void setMonitor(Monitor monitor)
+    {
+        this.monitor = monitor;
+    }
+
+    @Override
+    public void register( Event event )
+    {
+        if( getMonitor() == null )
+        {
+            return;
+        }
+
+        getMonitor().register( event );
     }
 }

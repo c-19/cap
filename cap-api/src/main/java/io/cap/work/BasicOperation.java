@@ -1,4 +1,4 @@
-package io.cap;
+package io.cap.work;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +17,7 @@ public class BasicOperation extends AbstractOperation
     }
 
     @Override
-    public Output run( Input input )
+    public Output run(Input input )
     {
         String runKey = getParentName() + "." + getName() + ".run";
         getContext().put( runKey, LocalDateTime.now() );

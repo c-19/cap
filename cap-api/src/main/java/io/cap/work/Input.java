@@ -1,4 +1,6 @@
-package io.cap;
+package io.cap.work;
+
+import io.cap.Context;
 
 public class Input extends Context
 {

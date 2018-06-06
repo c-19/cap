@@ -3,7 +3,7 @@ package io.cap;
 /**
  * Allow contextual information access.
  */
-public interface Contextual
+public interface Contextual extends Named
 {
     /**
      * Retrieve the context information.
