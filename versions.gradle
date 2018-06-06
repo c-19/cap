@@ -1,0 +1,11 @@
+//-*- coding: utf-8 -*-
+group = 'io.cap'
+version = '0.0.1-SNAPSHOT'
+
+ext.libs = [  
+  // for spock
+  groovy_all: 'org.codehaus.groovy:groovy-all:2.4.4+',
+  spock_core: 'org.spockframework:spock-core:1.0-groovy-2.4',
+  cglib_nodep: 'cglib:cglib-nodep:3.2.4',
+  objenesis: 'org.objenesis:objenesis:2.6'
+]

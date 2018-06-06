@@ -1,0 +1,3 @@
+//-*- coding: utf-8 -*-
+include 'cap-api'
+include 'cap-runner'
