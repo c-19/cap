@@ -6,7 +6,6 @@
 
 package io.cap.work;
 
-public abstract class AbstractOperation extends ContextualMonitorBase implements Operation
+public abstract class AbstractSequence extends ContextualMonitorBase implements Sequence
 {
-
 }

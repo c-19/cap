@@ -12,9 +12,9 @@ import io.cap.monitor.Event;
 import io.cap.monitor.Monitor;
 import io.cap.monitor.Monitored;
 
-public abstract class CommonBaseHelper implements Contextual, Monitored
+public abstract class ContextualMonitorBase implements Contextual, Monitored
 {
-    private Context context;
+    private Context context = new Context();
     private String parentName = "ROOT";
     private String name = this.getClass().getName();
     private Monitor monitor;

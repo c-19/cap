@@ -108,12 +108,53 @@ class BasicRunnerTest extends Specification
         o.getEvents() == [e]
     }
 
+    def "Run a sequence of operations in order."()
+    {
+        given:
+        Monitor m = new Monitor()
+        BasicObserver o = new BasicObserver()
+        m.addObserver( o )
+        instance.setMonitor( m )
+
+        Sequence s = new BasicSequence()
+        s.setName( "s1" )
+        Operation o1 = new AddOneOperation()
+        o1.setName( "o1" )
+        Operation o2 = new AddOneOperation()
+        o2.setName( "o2" )
+        s.addOperation( o1 )
+        s.addOperation( o2 )
+
+        Input input = new Input()
+        input.put( "n", 1 )
+
+        when:
+        Output output = instance.run( s, input )
+
+        then:
+        output.get( "n" ) == 3
+
+    }
+
     class ExceptionalOperation extends BasicOperation
     {
         @Override
         Output run( Input input )
         {
             throw new RuntimeException( "Exceptional." );
+        }
+    }
+
+    class AddOneOperation extends BasicOperation
+    {
+        @Override
+        Output run( Input input )
+        {
+            Output output = new Output()
+            Integer i = input.get( "n" )
+            i++
+            output.put( "n", i )
+            return output
         }
     }
 

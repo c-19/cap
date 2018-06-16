@@ -16,7 +16,19 @@ public interface Runner extends Contextual, Monitored
 {
     /**
      * Run the operation.
+     *
      * @param operation to run.
+     * @param input to the operation.
+     * @return output from the operation.
      */
     Output run(Operation operation, Input input );
+
+    /**
+     * Run the sequence.
+     *
+     * @param sequence to run.
+     * @param input to the sequence.
+     * @return output from the operation.
+     */
+    Output run(Sequence sequence, Input input );
 }

@@ -11,4 +11,14 @@ import io.cap.Context;
 public class Output extends Context
 {
     private static final long serialVersionUID = 1L;
+
+    public Output()
+    {
+
+    }
+
+    public Output( Context source )
+    {
+        super( source );
+    }
 }

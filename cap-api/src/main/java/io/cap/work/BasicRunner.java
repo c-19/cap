@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
  */
 public class BasicRunner extends AbstractRunner
 {
+    private static final String SEQUENCE_INPUT = "sequence.input";
 
     @Override
     public Output run(Operation operation, Input input )
@@ -39,13 +40,32 @@ public class BasicRunner extends AbstractRunner
         return output;
     }
 
+    @Override
+    public Output run(Sequence sequence, Input input)
+    {
+        Input operationInput = new Input( input );
+        Output output = new Output();
+
+        getContext().put( SEQUENCE_INPUT, input);
+
+        for( Operation o: sequence.getOperations() )
+        {
+            o.setParentName( sequence.getFullyQualifiedName() );
+            output = run( o, operationInput );
+            operationInput = new Input( output );
+        }
+
+        return output;
+
+    }
+
     private void doInit( Operation operation )
     {
         record(operation, "init.start", LocalDateTime.now() );
 
         operation.init();
 
-        record(operation, "run.end", LocalDateTime.now() );
+        record(operation, "init.end", LocalDateTime.now() );
 
     }
 

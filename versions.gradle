@@ -5,10 +5,7 @@
  */
 
 //-*- coding: utf-8 -*-
-group = 'io.cap'
-version = '0.0.1-SNAPSHOT'
-
-ext.libs = [  
+ext.libs = [
   // for spock
   groovy_all: 'org.codehaus.groovy:groovy-all:2.4.4+',
   spock_core: 'org.spockframework:spock-core:1.0-groovy-2.4',

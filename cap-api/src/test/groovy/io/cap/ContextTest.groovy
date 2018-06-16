@@ -131,4 +131,22 @@ class ContextTest extends Specification
         instance.size() == 1
     }
 
+    def "Copy constructor"()
+    {
+        given:
+        instance.put( "key", "value" )
+
+        when:
+        Context actual = new Context( instance )
+
+        then:
+        actual == instance
+
+        when:
+        instance.put( "key", "value2" )
+
+        then:
+        actual != instance
+    }
+
 }

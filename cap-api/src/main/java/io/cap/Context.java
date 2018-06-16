@@ -22,6 +22,22 @@ public class Context implements Serializable
 
     HashMap<String,Object> map = new HashMap<>();
 
+    public Context()
+    {
+
+    }
+
+    /**
+     * Copy Constructor.
+     *
+     * @param source initialise context from this source context.
+     */
+    public Context( Context source )
+    {
+        super();
+        this.merge( source );
+    }
+
     /**
      * Add the key value pair to the context.
      * Overwrites already existing keys.
