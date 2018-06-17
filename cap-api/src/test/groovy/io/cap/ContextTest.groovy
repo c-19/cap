@@ -6,13 +6,16 @@
 
 package io.cap
 
+import io.cap.work.contract.AbstractContractItem
+import io.cap.work.contract.ContractItem
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class ContextTest extends Specification
 {
-    @Shared Context instance;
+    @Shared Context instance
+
 
     def setup()
     {
@@ -32,6 +35,25 @@ class ContextTest extends Specification
         instance.size() == 1
         instance.containsKey( key )
         instance.get( key ) == value
+    }
+
+    def "Add Contract key to context"()
+    {
+        given:
+        String keyName = "name"
+        ContractItem key = new TestContractItem( keyName, ContractItem.Type.CONTEXT, "" )
+        String value = "value"
+
+        when:
+        instance.put( key, value )
+
+        then:
+        instance.size() == 1
+        instance.containsKey( key )
+        instance.get( key ) == value
+
+        instance.containsKey( keyName )
+        instance.get( keyName ) == value
     }
 
     def "Equals and hashcode checks simple checks."()
@@ -147,6 +169,14 @@ class ContextTest extends Specification
 
         then:
         actual != instance
+    }
+
+    class TestContractItem extends AbstractContractItem
+    {
+        TestContractItem(String name, Type type, String description )
+        {
+            super( name, type, description )
+        }
     }
 
 }

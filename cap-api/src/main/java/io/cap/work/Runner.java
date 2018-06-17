@@ -8,6 +8,8 @@ package io.cap.work;
 
 import io.cap.Contextual;
 import io.cap.monitor.Monitored;
+import io.cap.work.contract.Input;
+import io.cap.work.contract.Output;
 
 /**
  * Responsible for create and persisting runtime context.<br/>

@@ -8,8 +8,12 @@ package io.cap.test.example;
 
 import io.cap.test.example.service.FactorialService;
 import io.cap.work.AbstractOperation;
-import io.cap.work.Input;
-import io.cap.work.Output;
+import io.cap.work.contract.Contract;
+import io.cap.work.contract.ContractItem;
+import io.cap.work.contract.Input;
+import io.cap.work.contract.InputContractItem;
+import io.cap.work.contract.Output;
+import io.cap.work.contract.OutputContractItem;
 
 /**
  * Example of a simple operation that calls another service.
@@ -17,6 +21,14 @@ import io.cap.work.Output;
  */
 public class CallFactorialService extends AbstractOperation
 {
+    public static final ContractItem N = new InputContractItem( "n", "Positive integer to calculate factorial - n!");
+    public static final ContractItem RESULT = new OutputContractItem( "result", "Result of factorial calculation." );
+
+    private static final Contract contract = Contract.newBuilder()
+            .input( N )
+            .output( RESULT )
+            .build();
+
     private FactorialService factorialService;
     @Override
     public void init()
@@ -27,10 +39,10 @@ public class CallFactorialService extends AbstractOperation
     @Override
     public Output run(Input input)
     {
-        Long n = input.get( "n" );
+        Long n = input.get( N );
         Output output = new Output();
         long result = factorialService.calculate( n );
-        output.put( "result", result );
+        output.put( RESULT, result );
         return output;
     }
 
@@ -38,5 +50,11 @@ public class CallFactorialService extends AbstractOperation
     public void cleanup()
     {
         factorialService = null;
+    }
+
+    @Override
+    public Contract getContract()
+    {
+        return contract;
     }
 }

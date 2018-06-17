@@ -6,6 +6,8 @@
 
 package io.cap;
 
+import io.cap.work.contract.ContractItem;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Objects;
@@ -51,6 +53,20 @@ public class Context implements Serializable
     }
 
     /**
+     * Add the key value pair to the context.
+     * Overwrites already existing keys.
+     *
+     * Uses {@link ContractItem#getName()} as key value.
+     *
+     * @param key key to register.
+     * @param value value to register to key
+     */
+    public void put(ContractItem key, Object value )
+    {
+        put( key.getName(), value );
+    }
+
+    /**
      * Merge the given context against the current context.
      * If the given context is null, no change occurs.
      * @param c source context to merge.
@@ -75,6 +91,19 @@ public class Context implements Serializable
     }
 
     /**
+     * Check if the key is contained in the context.
+     *
+     * Uses {@link ContractItem#getName()} as key value.
+     *
+     * @param key to check for.
+     * @return if the key exists.
+     */
+    public boolean containsKey( ContractItem key )
+    {
+        return containsKey( key.getName() );
+    }
+
+    /**
      * Size of the keys.
      * @return
      */
@@ -95,6 +124,21 @@ public class Context implements Serializable
     public <T>T get( String key )
     {
         return (T)map.get(key);
+    }
+
+    /**
+     * Get the value for the key.
+     * An implicit cast is perform to the desired expect type.
+     *
+     * Uses {@link ContractItem#getName()} as key value.
+     *
+     * @param key to find.
+     * @param <T> implicitly cast to this type.
+     * @return value associated with key or null if not present.
+     */
+    public <T>T get( ContractItem key )
+    {
+        return get( key.getName() );
     }
 
     @Override

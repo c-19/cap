@@ -7,6 +7,8 @@
 package io.cap.work;
 
 import io.cap.monitor.Event;
+import io.cap.work.contract.Input;
+import io.cap.work.contract.Output;
 
 import java.time.LocalDateTime;
 

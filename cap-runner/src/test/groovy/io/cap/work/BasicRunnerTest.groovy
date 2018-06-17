@@ -10,6 +10,9 @@ import io.cap.Context
 import io.cap.monitor.BasicObserver
 import io.cap.monitor.Event
 import io.cap.monitor.Monitor
+import io.cap.work.contract.Contract
+import io.cap.work.contract.Input
+import io.cap.work.contract.Output
 import spock.lang.Shared
 import spock.lang.Specification
 
@@ -136,12 +139,36 @@ class BasicRunnerTest extends Specification
 
     }
 
+    class BasicSequence extends AbstractSequence
+    {
+        @Override
+        Contract getContract()
+        {
+            return Contract.newBuilder().build()
+        }
+    }
+
+    class BasicOperation extends AbstractOperation
+    {
+
+        @Override
+        Output run(Input input)
+        {
+            return new Output( input )
+        }
+
+        @Override
+        Contract getContract() {
+            return Contract.newBuilder().build()
+        }
+    }
+
     class ExceptionalOperation extends BasicOperation
     {
         @Override
         Output run( Input input )
         {
-            throw new RuntimeException( "Exceptional." );
+            throw new RuntimeException( "Exceptional." )
         }
     }
 

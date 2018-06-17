@@ -4,20 +4,20 @@
  * This software is licensed under under GPL-3.0-only or GPL-3.0-or-later, https://opensource.org/licenses/GPL-3.0
  */
 
-package io.cap.work;
+package io.cap.work.contract;
 
 import io.cap.Context;
 
-public class Output extends Context
+public class Input extends Context
 {
     private static final long serialVersionUID = 1L;
 
-    public Output()
+    public Input()
     {
 
     }
 
-    public Output( Context source )
+    public Input( Context source )
     {
         super( source );
     }

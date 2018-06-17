@@ -6,6 +6,10 @@
 
 package io.cap.work;
 
+import io.cap.work.contract.Contract;
+import io.cap.work.contract.Input;
+import io.cap.work.contract.Output;
+
 /**
  * Basic operation with no init or setup, save context
  * so that it is available within run operations.
@@ -14,20 +18,15 @@ public class BasicOperation extends AbstractOperation
 {
 
     @Override
-    public void init()
-    {
-        //Do nothing
-    }
-
-    @Override
     public Output run(Input input )
     {
         return new Output( input );
     }
 
+
     @Override
-    public void cleanup()
+    public Contract getContract()
     {
-        //Do nothing
+        return Contract.newBuilder().build();
     }
 }

@@ -8,5 +8,15 @@ package io.cap.work;
 
 public abstract class AbstractOperation extends ContextualMonitorBase implements Operation
 {
+    @Override
+    public void init()
+    {
+        //Do nothing
+    }
 
+    @Override
+    public void cleanup()
+    {
+        //Do nothing
+    }
 }

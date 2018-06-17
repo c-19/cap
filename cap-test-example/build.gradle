@@ -11,6 +11,7 @@ apply plugin: 'jacoco'
 
 dependencies {
     implementation project( ":cap-api" )
+    implementation project( ":cap-runner" )
     
     //Test
     //Spock

@@ -10,6 +10,8 @@ import io.cap.Context
 import io.cap.monitor.BasicObserver
 import io.cap.monitor.Event
 import io.cap.monitor.Monitor
+import io.cap.work.contract.Input
+import io.cap.work.contract.Output
 import spock.lang.Shared
 import spock.lang.Specification
 

@@ -7,6 +7,9 @@
 package io.cap.test.example
 
 import io.cap.work.*
+import io.cap.work.contract.Contract
+import io.cap.work.contract.Input
+import io.cap.work.contract.Output
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -26,13 +29,13 @@ class CallFactorialServiceTest extends Specification
 
         sequence.addOperation( callFactorialService )
         Input input = new Input()
-        input.put( "n", n )
+        input.put( CallFactorialService.N, n )
 
         when:
         Output output = runner.run( sequence, input )
 
         then:
-        output.get( "result" ) == expected
+        output.get( CallFactorialService.RESULT ) == expected
 
         where:
         n  || expected
@@ -45,6 +48,26 @@ class CallFactorialServiceTest extends Specification
         6L  || 720L
         15L || 1307674368000L
         20L || 2432902008176640000L
+    }
+
+    def "Check contract is as expected."()
+    {
+        when:
+        Contract c = new CallFactorialService().getContract()
+
+        then:
+        c != null
+        c.getInput().size() == 1
+        c.getOutput().size() == 1
+    }
+
+    class BasicSequence extends AbstractSequence
+    {
+        @Override
+        Contract getContract()
+        {
+            return Contract.newBuilder().build()
+        }
     }
 
 }

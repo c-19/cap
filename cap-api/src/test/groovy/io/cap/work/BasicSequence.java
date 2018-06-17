@@ -6,19 +6,17 @@
 
 package io.cap.work;
 
-import io.cap.Context;
+import io.cap.work.contract.Contract;
 
-public class Input extends Context
+/**
+ * Basic Sequence.
+ */
+public class BasicSequence extends AbstractSequence
 {
-    private static final long serialVersionUID = 1L;
 
-    public Input()
+    @Override
+    public Contract getContract()
     {
-
-    }
-
-    public Input( Context source )
-    {
-        super( source );
+        return Contract.newBuilder().build();
     }
 }

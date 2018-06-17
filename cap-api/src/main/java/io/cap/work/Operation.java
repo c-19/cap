@@ -9,6 +9,9 @@ package io.cap.work;
 import io.cap.Context;
 import io.cap.Contextual;
 import io.cap.monitor.Monitored;
+import io.cap.work.contract.Contractual;
+import io.cap.work.contract.Input;
+import io.cap.work.contract.Output;
 
 /**
  * A discrete unit of activity.<br/>
@@ -30,7 +33,7 @@ import io.cap.monitor.Monitored;
  * </ol>
  *
  */
-public interface Operation extends Contextual, Monitored
+public interface Operation extends Contextual, Monitored, Contractual
 {
     /**
      * Initialise the operation for running.

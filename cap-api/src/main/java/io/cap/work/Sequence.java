@@ -8,6 +8,9 @@ package io.cap.work;
 
 import io.cap.Contextual;
 import io.cap.monitor.Monitored;
+import io.cap.work.contract.Contractual;
+import io.cap.work.contract.Input;
+import io.cap.work.contract.Output;
 
 import java.util.List;
 
@@ -19,7 +22,7 @@ import java.util.List;
  * To adapt {@link Output} from one {@link Operation} to the nexts {@link Input} an
  * intermediate {@link Operation} could be used.
  */
-public interface Sequence extends Contextual, Monitored
+public interface Sequence extends Contextual, Monitored, Contractual
 {
 
     /**
